@@ -1,24 +1,26 @@
-import logo from './logo.svg';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.js";
 import './App.css';
+
+import { Route, Routes } from 'react-router-dom';
+
+import Singin from './components/Signin';
+import Singup from './components/Signup';
+import Home from './components/Home';
+
+import { ContextProvider } from './context/GlobalContext'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ContextProvider>
+      <Routes>
+        <Route path="/" element={<Singin />} />
+        <Route path="/signin" element={<Singin />} />
+        <Route path="/signup" element={<Singup />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="*" element={<Singin />} />
+      </Routes>
+    </ContextProvider>
   );
 }
 
